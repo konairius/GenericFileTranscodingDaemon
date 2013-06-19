@@ -1,0 +1,18 @@
+<process sourcedir="/media/konsti/Transport3/transcodeing/in" targetdir="/media/konsti/Transport3/transcodeing/out" workdir="/media/konsti/Transport3/transcodeing/work" target_extension="mkv">
+	<extension>.mkv</extension>
+	<extension>.avi</extension>
+	<extension>.mpeg</extension>
+	<extension>.mpg</extension>
+	<transcoder name="Handbrake" orderNo="10">
+		<executable>/usr/bin/HandBrakeCLI</executable>
+		<parameter>-i $INFILE</parameter>
+		<parameter>-o $OUTFILE</parameter>
+		<parameter>--markers</parameter>
+		<parameter>--format mkv</parameter>
+		<parameter>--encoder x264</parameter>
+		<parameter>--quality 20</parameter>
+		<parameter>--audio 1,2,3,4,5,6,7,8,9,10</parameter>
+		<parameter>--aencoder copy</parameter>
+		<parameter>--verbose 0</parameter>
+	</transcoder>
+</process>

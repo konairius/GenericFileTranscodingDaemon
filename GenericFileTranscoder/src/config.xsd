@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- definition of simple types -->
+<xs:simpleType name="extension">
+	<xs:restriction base="xs:string">
+		<xs:pattern value="[.]([a-zA-Z0-9])*"/>
+	</xs:restriction>
+</xs:simpleType>
+
+
+<!-- definition of complex types -->
+<xs:complexType name="transcoder">
+	<xs:sequence>
+		<xs:element name="executable" type="xs:string" minOccurs="1" maxOccurs="1"/>
+		<xs:element name="parameter" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="name" type="xs:string" use="required"/>
+	<xs:attribute name="orderNo" type="xs:integer" use="required"/>
+</xs:complexType>
+
+<xs:complexType name="process">
+	<xs:sequence>
+		<xs:element name="extension" type="extension" minOccurs="1" maxOccurs="unbounded"/>
+		<xs:element name="transcoder" type="transcoder" minOccurs="1" maxOccurs="unbounded"/>
+	</xs:sequence>
+	<xs:attribute name="sourcedir" type="xs:string" use="required"/>
+	<xs:attribute name="targetdir" type="xs:string" use="required"/>
+	<xs:attribute name="workdir" type="xs:string" use="required"/>
+	<xs:attribute name="target_extension" type="xs:string" use="required"/>
+</xs:complexType>
+
+<xs:element name="process" type="process"/>
+
+</xs:schema>
