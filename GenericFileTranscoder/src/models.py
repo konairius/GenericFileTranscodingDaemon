@@ -115,7 +115,10 @@ class Process(object):
 
     def work(self):
         self.prepare()
+        counter = 0
         files = fileFinder(self.sourcedir, self.extensions)
         for file in files:
+            counter += 1
+            logger.info('Processing %s of %s (%s)' % (counter, len(files), file))
             self.process(file)
         self.cleanup()

@@ -23,19 +23,13 @@ logger = logging.getLogger(__name__)
 
 from xml.dom.minidom import parseString
 
-import argparse
-
 from models import Transcoder, Process
 
 processes = dict()
 
 
-def main():
-
-    parser = argparse.ArgumentParser(description='A XML configurable tool executes different operations on a file.')
-    parser.add_argument('XMLConfig', type=str)
-    args = parser.parse_args()
-    with open(args.XMLConfig, 'r') as file:
+def main(configPath):
+    with open(configPath, 'r') as file:
         string = file.read().replace('\n', '')
         processes = parseXML(string)
         for process in processes:
@@ -88,7 +82,3 @@ def parseXML(XMLString):
         #for extension in process.extensions:
         processes.append(process)
     return processes
-
-
-if '__main__' == __name__:
-    main()
